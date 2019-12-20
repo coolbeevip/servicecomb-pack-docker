@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build -file 0.6.0/Dockerfile.allinone -t coolbeevip/servicecomb-pack-allinone .
+      run: docker build -f 0.6.0/Dockerfile.allinone -t coolbeevip/servicecomb-pack-allinone .
