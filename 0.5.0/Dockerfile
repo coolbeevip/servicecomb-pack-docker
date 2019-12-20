@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine3.9
 
 LABEL description="Apache ServiceComb Pack"
 LABEL maintainer="coolbeevip@gmail.com"
-ENV ALPHA_VERSION=0.5.0
+ENV ALPHA_VERSION=0.5.0-SNAPSHOT
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
   && apk add --no-cache gnupg grep \
