@@ -13,7 +13,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && gpg --verify /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \  
   && unzip apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
   && rm -rf /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
-  && rm -rf /servicecomb-pack/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
+  && rm -rf /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
   && rm -rf /KEYS \
   && mv apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin servicecomb-pack \
   && cd servicecomb-pack \
