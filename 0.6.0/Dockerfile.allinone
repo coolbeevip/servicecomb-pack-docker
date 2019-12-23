@@ -23,7 +23,7 @@ COPY --from=builder /servicecomb-pack/alpha/alpha-benchmark/target/saga/alpha-be
 # Install Elasticsearch
 # https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
 
-RUN wget /elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz \
+RUN wget -O /elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz \
   && tar -xzf elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz \
   && rm elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz \
   && mv elasticsearch-${ELASTICSEARCH_VERSION} elasticsearch \
