@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Apache ServiceComb Pack 0.6.0 All-in-One
 
 on: [push]
 
