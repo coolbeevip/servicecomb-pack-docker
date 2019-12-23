@@ -1,26 +1,18 @@
+FROM maven:3.6.0-jdk-8 as builder
+
+RUN git clone https://github.com/apache/servicecomb-pack.git \
+  && cd servicecomb-pack \
+  && mvn clean package -f alpha -DskipTests=true
+
 FROM openjdk:8-jre-alpine3.9
 
 LABEL description="Apache ServiceComb Pack"
 LABEL maintainer="coolbeevip@gmail.com"
-ENV ALPHA_VERSION=0.5.0
+ENV ALPHA_VERSION=0.6.0-SNAPSHOT
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-  && apk add --no-cache gnupg grep \
-  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/servicecomb/servicecomb-pack/0.5.0/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
-  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc https://www.apache.org/dist/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
-  && wget -O /KEYS https://www.apache.org/dist/servicecomb/KEYS \
-  && gpg --import /KEYS \
-  && gpg --verify /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \  
-  && unzip apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
-  && rm -rf /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
-  && rm -rf /servicecomb-pack/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
-  && rm -rf /KEYS \
-  && mv apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin servicecomb-pack \
-  && cd servicecomb-pack \
-  && mkdir plugins \
-  && mv alpha-server-${ALPHA_VERSION}-exec.jar alpha-server-exec.jar \
-  && rm -rf `ls | egrep -v '(alpha-server-exec.jar|LICENSE|NOTICE)'` \
-  && apk del gnupg grep
+RUN mkdir /servicecomb-pack /servicecomb-pack/plugins /servicecomb-pack/logs
+COPY --from=builder /servicecomb-pack/alpha/alpha-server/target/saga/alpha-server-${ALPHA_VERSION}-exec.jar /servicecomb-pack/alpha-server-exec.jar
+COPY --from=builder /servicecomb-pack/alpha/alpha-benchmark/target/saga/alpha-benchmark-${ALPHA_VERSION}-exec.jar /servicecomb-pack/alpha-benchmark-exec.jar
 
 WORKDIR /servicecomb-pack
 

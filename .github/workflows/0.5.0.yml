@@ -10,6 +10,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build the Docker image
-      working-directory: 0.5.0
-      run: docker build -f Dockerfile -t coolbeevip/servicecomb-pack .
+    - name: build
+      working-directory: ./0.5.0
+      run: docker build -f Dockerfile -t coolbeevip/servicecomb-pack:0.5.0 .
+    - name: push
+      working-directory: ./0.5.0
+      run: docker pull coolbeevip/servicecomb-pack:0.5.0
