@@ -1,4 +1,4 @@
-name: Apache ServiceComb Pack 0.6.0 All-in-One
+name: 0.6.0 All-in-One
 
 on: [push]
 
@@ -11,4 +11,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
+      working-directory: ./0.6.0
       run: docker build -f 0.6.0/Dockerfile.allinone -t coolbeevip/servicecomb-pack-allinone .
