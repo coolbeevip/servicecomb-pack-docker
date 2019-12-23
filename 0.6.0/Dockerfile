@@ -12,7 +12,6 @@ ENV ALPHA_VERSION=0.6.0-SNAPSHOT
 
 RUN mkdir /servicecomb-pack /servicecomb-pack/plugins /servicecomb-pack/logs
 COPY --from=builder /servicecomb-pack/alpha/alpha-server/target/saga/alpha-server-${ALPHA_VERSION}-exec.jar /servicecomb-pack/alpha-server-exec.jar
-COPY --from=builder /servicecomb-pack/alpha/alpha-benchmark/target/saga/alpha-benchmark-${ALPHA_VERSION}-exec.jar /servicecomb-pack/alpha-benchmark-exec.jar
 
 WORKDIR /servicecomb-pack
 
