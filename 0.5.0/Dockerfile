@@ -2,11 +2,11 @@ FROM openjdk:8-jre-alpine3.9
 
 LABEL description="Apache ServiceComb Pack"
 LABEL maintainer="coolbeevip@gmail.com"
-ENV ALPHA_VERSION=0.5.0-SNAPSHOT
+ENV ALPHA_VERSION=0.5.0
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
   && apk add --no-cache gnupg grep \
-  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/servicecomb/servicecomb-pack/0.5.0/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
+  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
   && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc https://www.apache.org/dist/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
   && wget -O /KEYS https://www.apache.org/dist/servicecomb/KEYS \
   && gpg --import /KEYS \
