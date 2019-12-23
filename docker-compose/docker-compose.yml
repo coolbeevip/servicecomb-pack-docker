@@ -1,0 +1,50 @@
+version: '3.2'
+services:
+  postgres:
+    image: postgres:9.6
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=saga
+      - POSTGRES_USER=saga
+      - POSTGRES_PASSWORD=password
+
+  elasticsearch:
+    image: elasticsearch:6.6.2
+    hostname: elasticsearch
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+      - "discovery.type=single-node"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  alpha-server:
+    image: coolbeevip/servicecomb-pack
+    hostname: alpha-server
+    container_name: alpha-server
+    ports:
+      - 8080:8080
+      - 8090:8090
+    environment:
+      - "spring.profiles.active=prd"
+      - "spring.datasource.url=jdbc:postgresql://postgres:5432/saga?useSSL=false"
+      - "spring.datasource.username=saga"
+      - "spring.datasource.password=password"
+      - "spring.data.elasticsearch.cluster-name=docker-cluster"
+      - "spring.data.elasticsearch.cluster-nodes=elasticsearch:9300"
+      - "alpha.feature.akka.enabled=true"
+      - "alpha.feature.akka.transaction.repository.type=elasticsearch"      
+    links:
+      - postgres:postgres
+      - elasticsearch:elasticsearch
+    depends_on:
+      - postgres
+      - elasticsearch
