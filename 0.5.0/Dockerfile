@@ -6,11 +6,11 @@ ENV ALPHA_VERSION=0.5.0
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
   && apk add --no-cache gnupg grep \
-  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
-  && wget -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc https://www.apache.org/dist/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
-  && wget -O /KEYS https://www.apache.org/dist/servicecomb/KEYS \
+  && wget -T 600 -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip http://mirrors.tuna.tsinghua.edu.cn/apache/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
+  && wget -T 600 -O /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc https://www.apache.org/dist/servicecomb/servicecomb-pack/${ALPHA_VERSION}/apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
+  && wget -T 600 -O /KEYS https://www.apache.org/dist/servicecomb/KEYS \
   && gpg --import /KEYS \
-  && gpg --verify /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \  
+  && gpg --verify /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
   && unzip apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \
   && rm -rf /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip.asc \
   && rm -rf /apache-servicecomb-pack-distribution-${ALPHA_VERSION}-bin.zip \

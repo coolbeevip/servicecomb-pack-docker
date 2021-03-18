@@ -1,6 +1,9 @@
 name: 0.7.0
 
-on: [push]
+on:
+  push:
+    paths:
+      - "0.7.0/Dockerfile"
 
 jobs:
 
