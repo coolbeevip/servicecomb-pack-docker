@@ -1,0 +1,18 @@
+name: 0.7.0
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build
+      working-directory: ./0.7.0
+      run: docker build -f Dockerfile -t coolbeevip/servicecomb-pack:0.7.0 .
+    - name: push
+      working-directory: ./0.7.0
+      run: docker pull coolbeevip/servicecomb-pack:0.7.0
