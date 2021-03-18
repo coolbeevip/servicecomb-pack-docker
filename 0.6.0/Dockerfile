@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine3.9
+FROM openjdk:8-jre
 
 LABEL description="Apache ServiceComb Pack"
 LABEL maintainer="coolbeevip@gmail.com"
