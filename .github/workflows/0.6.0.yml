@@ -4,13 +4,10 @@ on:
   push:
     paths:
       - "0.6.0/Dockerfile"
-
+      - ".github/workflows/0.6.0.yml"
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Check Out Repo
       uses: actions/checkout@v1
