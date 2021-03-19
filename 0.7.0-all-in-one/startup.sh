@@ -241,7 +241,7 @@ _pg_want_help() {
 	return 1
 }
 
-_main() {	
+_main() {
 	docker_setup_env
 	# setup data directories and permissions (when run as root)
 	docker_create_db_directories
@@ -269,7 +269,7 @@ _main() {
 
 		echo
 		echo 'PostgreSQL init process complete; ready for start up.'
-		echo			
+		echo
 	else
 		echo
 		echo 'PostgreSQL Database directory appears to contain a database; Skipping initialization'
@@ -292,7 +292,7 @@ _main() {
 			--alpha.feature.akka.transaction.repository.type=elasticsearch \
 			--spring.data.elasticsearch.cluster-name=elasticsearch \
 			--spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300
-	
+
 	echo '----------------------------------------------------------------'
 	echo 'Apache ServiceComb Pack ${ALPHA_VERSION}'
 	echo 'ElasticSearch ${ELASTICSEARCH_VERSION}'
@@ -301,5 +301,5 @@ _main() {
 }
 
 if ! _is_sourced; then
-	_main "$@"	
+	_main "$@"
 fi
