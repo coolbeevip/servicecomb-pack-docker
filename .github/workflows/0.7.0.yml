@@ -33,7 +33,9 @@ jobs:
           context: ./0.7.0
           file: ./0.7.0/Dockerfile
           push: true
-          tags: coolbeevip/servicecomb-pack:0.7.0
+          tags:
+            - coolbeevip/servicecomb-pack:0.7.0
+            - coolbeevip/servicecomb-pack:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image Digest
