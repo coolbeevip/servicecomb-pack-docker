@@ -5,6 +5,8 @@ on:
     paths:
       - "0.7.0-all-in-one/Dockerfile"
       - ".github/workflows/0.7.0-all-in-one.yml"
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
